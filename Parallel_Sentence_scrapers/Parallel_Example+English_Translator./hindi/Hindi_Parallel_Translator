@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import json
+from pathlib import Path
+from transformers import MarianMTModel, MarianTokenizer
+
+INPUT_PATH = "idioms_with_examples_hi.jsonl"
+OUTPUT_PATH = "idioms_dual_english.jsonl"
+
+# -------------------------
+# Replace this function with a real translator API
+
+
+model_name = "Helsinki-NLP/opus-mt-hi-en"
+tokenizer = MarianTokenizer.from_pretrained(model_name)
+model = MarianMTModel.from_pretrained(model_name)
+
+def translate_hi_to_en(text: str) -> str:
+    inputs = tokenizer(text, return_tensors="pt", truncation=True)
+    translated = model.generate(**inputs)
+    return tokenizer.decode(translated[0], skip_special_tokens=True)
+
+    return f"[Translator] {text}"
+
+# -------------------------
+
+input_file = Path(INPUT_PATH)
+output_file = Path(OUTPUT_PATH)
+
+with input_file.open("r", encoding="utf-8") as f_in, \
+     output_file.open("w", encoding="utf-8") as f_out:
+
+    for line in f_in:
+        obj = json.loads(line)
+        new_examples = []
+        for ex in obj.get("examples", []):
+            hi_text = ex.get("hi", "").strip()
+            en_opus = ex.get("en", "").strip()
+            if not hi_text or not en_opus:
+                continue
+            en_translator = translate_hi_to_en(hi_text)
+            new_examples.append({
+                "hi": hi_text,
+                "en_opus": en_opus,
+                "en_translator": en_translator
+            })
+
+        output_obj = {
+            "idiom": obj["idiom"],
+            "examples": new_examples
+        }
+        f_out.write(json.dumps(output_obj, ensure_ascii=False) + "\n")
+
+print(f"Done! Saved dual-translation JSONL to {OUTPUT_PATH}")

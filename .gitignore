@@ -21,12 +21,22 @@ wheels/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
+# sensitiv`e data
+*.env
+Database/*
 # VS Code
 .vscode/
-*.code-workspace
+*.code-workspace,
 
+# large files
+
+Parallel_Sentence_scrapers/OPUS_API/en-es/*
+Parallel_Sentence_scrapers/OPUS_API/en-id/*
+Parallel_Sentence_scrapers/OPUS_API/en-hi/*
+Parallel_Sentence_scrapers/OPUS_API/en-te.txt/*
 # Environment
+*.code-workspace
+*.DS_Store
 .env
 .venv
 env/

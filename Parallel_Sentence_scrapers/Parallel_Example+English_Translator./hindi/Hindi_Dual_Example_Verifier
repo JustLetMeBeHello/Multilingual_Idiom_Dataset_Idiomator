@@ -1,0 +1,58 @@
+import json
+import re
+
+INPUT_PATH = "idioms_with_examples_hi.jsonl"
+OUTPUT_PATH = "idioms_dual_translations_cleaned.jsonl"
+
+def clean_translation(text: str) -> str:
+    if not text:
+        return ""
+    text = re.sub(r"\s+", " ", text)  # normalize spaces
+    text = text.strip()
+    if text:
+        text = text[0].upper() + text[1:]
+    return text
+
+def is_valid_translation(text: str) -> bool:
+    """Check if translation is not obviously broken."""
+    if not text or len(text) < 3:
+        return False
+    # Remove obviously nonsense placeholders
+    nonsense_patterns = [
+        r"snubling", r"SelfTTT", r"OO", r"Smarting", r"Am +", r"Vinnyvania"
+    ]
+    for pat in nonsense_patterns:
+        if re.search(pat, text, re.IGNORECASE):
+            return False
+    return True
+
+with open(INPUT_PATH, "r", encoding="utf-8") as infile, \
+     open(OUTPUT_PATH, "w", encoding="utf-8") as outfile:
+    
+    for line in infile:
+        data = json.loads(line)
+        idiom = data.get("idiom")
+        examples = data.get("examples", [])
+        cleaned_examples = []
+
+        for ex in examples:
+            hi = ex.get("hi", "")
+            en_opus = ex.get("en_opus", "")
+            en_translator = clean_translation(ex.get("en_translator", ""))
+
+            if not is_valid_translation(en_translator):
+                en_translator = ""  # remove nonsense translations
+
+            cleaned_examples.append({
+                "hi": hi,
+                "en_opus": en_opus,
+                "en_translator": en_translator
+            })
+        
+        json.dump({
+            "idiom": idiom,
+            "examples": cleaned_examples
+        }, outfile, ensure_ascii=False)
+        outfile.write("\n")
+
+print(f"Cleaned dual-translation JSONL written to: {OUTPUT_PATH}")

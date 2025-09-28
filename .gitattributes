@@ -1,0 +1,8 @@
+# Track all JSONL files in idioms_structured root
+idioms_structured/*.jsonl filter=lfs diff=lfs merge=lfs -text
+
+# Track JSONL files in first-level subfolders
+idioms_structured/*/*.jsonl filter=lfs diff=lfs merge=lfs -text
+
+# Track JSONL files in second-level subfolders
+idioms_structured/*/*/*.jsonl filter=lfs diff=lfs merge=lfs -text
