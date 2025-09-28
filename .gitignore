@@ -29,7 +29,7 @@ Database/*
 *.code-workspace,
 
 # large files
-
+Parallel_Sentence_scrapers/OPUS_API/*
 Parallel_Sentence_scrapers/OPUS_API/en-es/*
 Parallel_Sentence_scrapers/OPUS_API/en-id/*
 Parallel_Sentence_scrapers/OPUS_API/en-hi/*
