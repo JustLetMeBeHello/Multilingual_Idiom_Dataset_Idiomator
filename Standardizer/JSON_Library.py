@@ -75,5 +75,5 @@ def Structure_Senses(file_path, Output_File_Path):
                 # the commented out method is for structured data while the base form is for flattened out dat
 
 if __name__ == "__main__":
-    name = "English"
+    name = "Spanish"
     Structure_Senses(f"idioms_structured/Idiom_meanings/Unlabelled_Meanings/{name}/Raw_Meanings_Unstructured.json",f"idioms_structured/Idiom_meanings/Unlabelled_Meanings/{name}/Raw_Meanings_Ordered_Flattened.jsonl")

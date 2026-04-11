@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()  # ← loads .env into environment before os.getenv is called
 
 language = "Spanish"
+key = os.getenv("OPENAI_API_KEY")
+print("Key prefix:", key[:10] if key else "NOT FOUND")
 client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
 BATCH_SIZE = 30
@@ -87,7 +89,6 @@ def prompt_builder(definitions, idiom, sense_number, regions, register, idiom_id
         "Register": {register},
         "Region": {regions},
         """
-    print(input_prompt)
     return {"system_prompt": system_prompt, "input_prompt": input_prompt}
 
 
@@ -128,7 +129,7 @@ def create_batch_jsonl_file(i):
     output_file = os.path.join(output_path, f"batch_{i}.jsonl")
     with open(output_file, 'w', encoding='utf-8') as f:
         for req in requests:
-            f.write(json.dumps(req) + "\n")
+            f.write(json.dumps(req, ensure_ascii=False) + "\n")
 
     print(f"[Batch {i}] Wrote {len(requests)} requests")
     return output_file
@@ -182,7 +183,7 @@ def download_results(batch, i, batch_id):   # ← fix 2: accept batch_id as para
 
     with open(output_file, "w", encoding="utf-8") as f:
         for r in results:
-            f.write(json.dumps(r) + "\n")
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
     print(f"[Batch {i}] Saved {len(results)} senses to {output_file}")
 
