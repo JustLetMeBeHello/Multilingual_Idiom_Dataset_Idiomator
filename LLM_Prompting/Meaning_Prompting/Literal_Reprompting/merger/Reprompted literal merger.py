@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-language = "Hindi"
+language = "English"
 
 MERGED_PATH = f"idioms_structured/Idiom_meanings/Labelled_Meanings/{language}/Merged_Meanings_{language}.jsonl"
 RESULTS_DIR = Path(f"idioms_structured/Idiom_meanings/Labelled_Meanings/{language}/Reprompted_literal_meaning_Batch_Results/{language}")

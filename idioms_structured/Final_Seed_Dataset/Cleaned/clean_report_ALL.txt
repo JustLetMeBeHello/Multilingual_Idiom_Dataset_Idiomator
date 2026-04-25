@@ -1,0 +1,25 @@
+
+═════════════════════════════════════════════════════════════════
+  COMBINED CLEANING REPORT — ALL LANGUAGES
+═════════════════════════════════════════════════════════════════
+
+  Language            Input      Clean    Corrupt     NullEx     DupFix     GapFix
+  -------------- ---------- ---------- ---------- ---------- ---------- ----------
+  English            23,140     23,140          0         73        769      1,675
+  Spanish             7,518      7,518          0          7          0          0
+  Indonesian             95         95          0          0          0          0
+  Telugu                210        210          0          2          0          0
+  Hindi                 409        409          0          8          0          8
+  TOTAL              31,372     31,372          0         90        769      1,683
+
+  Column guide:
+    Input   = total input senses
+    Clean   = senses in CLEAN output
+    Corrupt = senses flagged (single-char definition)
+    NullEx  = senses with null examples (kept in clean, also in NULL_EXAMPLES file)
+    DupFix  = idioms where duplicate sense numbers were renumbered
+    GapFix  = idioms where gap-only sense numbers were renumbered
+
+  NOTE: Duplicate meaning_id UUIDs not modified — upstream fix required.
+
+═════════════════════════════════════════════════════════════════

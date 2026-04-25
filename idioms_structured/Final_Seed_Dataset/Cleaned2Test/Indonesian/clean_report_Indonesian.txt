@@ -1,0 +1,38 @@
+=================================================================
+  CLEANING REPORT — INDONESIAN
+=================================================================
+
+  Input file      : idioms_structured/Final_Seed_Dataset/Cleaned/Indonesian/Final_Indonesian_CLEAN.jsonl
+  Input records   : 95
+
+── FIXES APPLIED ────────────────────────────────────────────
+
+  [6] int → str cast on 'idiom' field     : 0 senses fixed
+  [2] Duplicate sense numbers renumbered  : 0 idioms
+  [4] Gap-only sense numbers renumbered   : 0 idioms
+
+── FLAGGED FOR MANUAL REPAIR ────────────────────────────────
+
+  [1] Corrupted (single-char definition)  : 0 senses → Final_Indonesian_CORRUPTED.jsonl
+  [3] Null examples                       : 0 senses → Final_Indonesian_NULL_EXAMPLES.jsonl
+
+── NOT MODIFIED ─────────────────────────────────────────────
+
+  [5] Duplicate meaning_id UUIDs: require upstream investigation.
+      Do not use meaning_id as a unique key until resolved.
+
+── OUTPUT FILES ─────────────────────────────────────────────
+
+  Final_Indonesian_CLEAN.jsonl            : 95 senses
+  Final_Indonesian_CORRUPTED.jsonl        : 0 senses
+  Final_Indonesian_NULL_EXAMPLES.jsonl    : 0 senses
+
+── VERIFICATION ─────────────────────────────────────────────
+
+  Remaining single-char defs      : 0
+  Remaining int idiom fields      : 0
+  Remaining dup sense numbers     : 0
+  Remaining gap sense numbers     : 0
+  Remaining null examples         : 0
+
+=================================================================

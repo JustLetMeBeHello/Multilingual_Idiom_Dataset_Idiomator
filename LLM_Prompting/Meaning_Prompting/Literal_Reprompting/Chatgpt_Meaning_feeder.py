@@ -56,7 +56,7 @@ total_batches = (len(idioms) + BATCH_SIZE - 1) // BATCH_SIZE
 
 # ---------------- PROMPT ----------------
 
-SYSTEM_PROMPT = fSYSTEM_PROMPT = f"""
+SYSTEM_PROMPT = f"""
 You are an expert {language} linguistic annotation system.
 
 Task:

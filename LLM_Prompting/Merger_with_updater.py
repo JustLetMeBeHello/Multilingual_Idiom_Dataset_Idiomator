@@ -24,9 +24,9 @@ from pathlib import Path
  
 BASE_DIR = Path("idioms_structured")
  
-LANGUAGES = ["English", "Spanish", "Indonesian", "Telugu", "Hindi"]
+LANGUAGES = ["English","Spanish", "Indonesian", "Telugu", "Hindi"]
  
-MEANINGS_TEMPLATE = "Idiom_meanings/Labelled_Meanings/{lang}/Merged_Meanings_{lang}_FINAL.jsonl"
+MEANINGS_TEMPLATE = "Idiom_meanings/Labelled_Meanings/{lang}/Merged_Meanings_{lang}_RENUMBERED.jsonl"
 EXAMPLES_TEMPLATE = "Idiom_meanings/Example_Sentences/{lang}/Examples_{lang}.jsonl"
 OUTPUT_TEMPLATE   = "Final_Seed_Dataset/{lang}/Final_{lang}.jsonl"
  

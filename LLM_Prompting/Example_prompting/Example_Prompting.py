@@ -31,15 +31,20 @@ def run(
             for line in f:
                 if not line.strip():
                     continue
-                idiom_id, sense_list = json.loads(line)
-                for s in sense_list:
-                    senses.append({
-                        "idiom_id": idiom_id,
-                        "idiom": s.get("idiom", ""),
-                        "sense_number": s.get("sense_number"),
-                        "definitions": s.get("definitions", ""),
-                        "Idiomaticity": s.get("Idiomaticity", "")
-                    })
+                r = json.loads(line)
+
+                # Safety: ensure idiom_id exists
+                if "idiom_id" not in r or not r["idiom_id"]:
+                    r["idiom_id"] = f"en_{r.get('idiom','unknown')}"
+
+                senses.append({
+                    "idiom_id": r.get("idiom_id"),
+                    "idiom": r.get("idiom", ""),
+                    "sense_number": r.get("sense_number"),
+                    "definitions": r.get("definitions", ""),
+                    "Idiomaticity": r.get("Idiomaticity", "")
+                })
+
         return senses
 
     senses = load_senses(input_path)
@@ -233,11 +238,11 @@ Rules:
 # ---------------- ENTRY POINT ----------------
 
 if __name__ == "__main__":
-    language = "English"
+    language = "Spanish"
     run(
         language=language,
-        input_path=f"idioms_structured/Idiom_meanings/Labelled_Meanings/{language}/Merged_Meanings_{language}_FINAL.jsonl",
-        request_dir=f"idioms_structured/Idiom_meanings/Example_Sentences/{language}/Unfullfilled_Batch_Requests",
-        result_dir=f"idioms_structured/Idiom_meanings/Example_Sentences/{language}/Unfullfilled_Batch_Results",
-        output_path=f"idioms_structured/Idiom_meanings/Example_Sentences/{language}/Examples_{language}.jsonl",
+        input_path=f"idioms_structured/Final_Seed_Dataset/Cleaned2Test/{language}/Final_{language}_NULL_EXAMPLES.jsonl",
+        request_dir=f"idioms_structured/Final_Seed_Dataset/{language}/Unfullfilled_Batch_Requests",
+        result_dir=f"idioms_structured/Final_Seed_Dataset/{language}/Unfullfilled_Batch_Results",
+        output_path=f"idioms_structured/Idiom_meanings/Example_Sentences/{language}/Examples_Missing_Final_{language}.jsonl",
     )
