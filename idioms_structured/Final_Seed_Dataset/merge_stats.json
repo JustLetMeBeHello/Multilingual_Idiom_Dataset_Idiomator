@@ -1,0 +1,42 @@
+[
+  {
+    "language": "English",
+    "unique_idioms": 9638,
+    "total_senses": 25614,
+    "senses_with_examples": 23335,
+    "senses_without_examples": 2279,
+    "total_examples": 78392
+  },
+  {
+    "language": "Spanish",
+    "unique_idioms": 3185,
+    "total_senses": 8025,
+    "senses_with_examples": 7740,
+    "senses_without_examples": 285,
+    "total_examples": 25819
+  },
+  {
+    "language": "Indonesian",
+    "unique_idioms": 46,
+    "total_senses": 95,
+    "senses_with_examples": 95,
+    "senses_without_examples": 0,
+    "total_examples": 328
+  },
+  {
+    "language": "Telugu",
+    "unique_idioms": 103,
+    "total_senses": 210,
+    "senses_with_examples": 170,
+    "senses_without_examples": 40,
+    "total_examples": 595
+  },
+  {
+    "language": "Hindi",
+    "unique_idioms": 183,
+    "total_senses": 409,
+    "senses_with_examples": 398,
+    "senses_without_examples": 11,
+    "total_examples": 1381
+  }
+]
